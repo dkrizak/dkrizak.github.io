@@ -1,0 +1,1029 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>HS Tournament</title>
+		<link rel="icon" href="hsicon.png">
+		
+		<style type="text/css">
+
+			html { 
+  				background: url(bg2.jpg) no-repeat center center fixed; 
+  				-webkit-background-size: cover;
+  				-moz-background-size: cover;
+ 				-o-background-size: cover;
+  				background-size: cover;
+			}
+
+			body{
+				max-width: 1024px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			#sidebar{
+				/*width: 150px;*/
+				width: 14%;
+				background-color: rgba(24, 25, 24, 0.4);
+				height: 100%;
+				padding: 2px;
+				float: left;
+				text-align: center;
+			}
+
+			#content{
+				width: 85%;
+				float: left;
+			}
+
+			#players{
+				width: 100%;
+				overflow: hidden;
+			}
+
+			button{
+				margin-top: 50px;
+			}
+
+			#matchbtn{
+				visibility: hidden;
+			}
+
+			#genbtn{
+				visibility: hidden;
+			}
+
+			.player{
+				width: 210px;
+				height: 190px;
+				background-color: rgba(0, 255, 43, 0.4); 
+				padding: 2px;
+				float: left;
+				margin-left: 2px;
+				margin-bottom: 2px;
+				border-radius: 15px;
+				position: relative;
+			}
+
+			.positiondiv{
+				position: absolute;
+				bottom: 0;
+			}
+
+			.classimg{
+				width: 70px;
+				float: left;
+			}
+
+			.removeimg{
+				width: 30px;
+				opacity: 0.4;
+				clear: both;
+				float: right;
+			}
+
+			.removeimg:hover{
+				opacity: 1;
+			}
+
+			.cp{
+				text-align: center;
+				font-size: 25px;
+				font-weight: bold;
+				margin: 2px;
+				word-break: break-all;
+			}
+
+			.groups{
+				width: 50%;
+				float: left;
+				/*margin-top: 20px;*/
+			}
+			.groups table{
+				margin: auto;
+			}
+
+			#tablediv{
+				width: 100%;
+				padding-top: 150px;
+				padding-bottom: 150px;
+				clear: both;
+			}
+			#tablediv p{
+				text-align: center;
+				font-size: 50;
+				font-weight: bold;
+				color: rgba(0, 255, 43, 0.6);
+				margin: 0;
+				padding-bottom: 10px;
+				padding-top: 10px;
+				background-color: rgba(24, 25, 24, 0.4);
+				border-top-right-radius: 15px;
+			}
+			#tablediv th{
+				font-size: 48;
+				font-weight: bold;
+				/*border: 4px solid #3d1401;*/
+				/*border: 4px solid #e4500c;*/
+				border: 4px solid rgba(228, 80, 12, 0.7);
+			}
+			#tablediv td{
+				font-size: 38;
+				word-break: break-all;
+				/*border: 4px solid #3d1401;*/
+				border: 4px solid rgba(228, 80, 12, 0.7);
+			}
+			#tablediv table{
+				width: 420px;
+				/*border: 4px solid #3d1401;*/
+				border: 4px solid rgba(228, 80, 12, 0.7);
+				border-collapse: collapse;
+			}
+			.grouppair{
+				width: 100%;
+				overflow: hidden;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				background-color: rgba(0, 255, 43, 0.4);
+			}
+
+			#matchdiv{
+				width: 100%;
+				clear: both;
+				padding-bottom: 150px;
+			}
+			#matchdiv th{
+				font-size: 40;
+				font-weight: bold;
+				border: 4px solid rgba(228, 80, 12, 0.7);			}
+			#matchdiv td{
+				font-size: 30;
+				font-weight: bold;
+				word-break: break-all;
+				border: 4px solid rgba(228, 80, 12, 0.7);
+			}
+			#matchdiv table{
+				width: 420px;
+				border: 4px solid rgba(228, 80, 12, 0.7);
+				border-collapse: collapse;
+			}
+			#matchdiv input{
+				text-align: center;
+				font-size: 25;
+				font-weight: bold;
+				width: 20px;
+				background-color: #e4500c;
+				border-color: #e4500c;
+			}
+			#matchdiv p{
+				text-align: center;
+				font-size: 40;
+				color: rgba(0, 255, 43, 0.6);
+				font-weight: bold;
+				margin-bottom: 0px;
+				margin-top: 50px;
+				background-color: rgba(24, 25, 24, 0.4);
+				border-top-right-radius: 15px;
+			}
+			.matchpair{
+				width: 100%;
+				overflow: hidden;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				background-color: rgba(0, 255, 43, 0.4);
+			}
+
+			#brackets{
+				background-color: rgba(0, 255, 43, 0.4);
+				width: 1024px;
+				height: 100%;
+				float: left;
+				clear: both;
+				padding-top: 50px;
+				padding-bottom: 50px;
+			}
+
+			#left{
+				width: 20%;
+				height: 20%;
+				border-top: 4px solid black;
+				border-bottom: 4px solid black;
+				border-right: 4px solid black;
+			}
+			.left1{
+				font-size: 25;
+				padding-left: 10px;
+				position: relative;
+				/*top: -40px;*/
+				top: -27%;
+			}
+
+			.left1in{
+				position: relative;
+				/*top: -18px;*/
+				top: -25%;
+				float: right;
+			}
+			.left2{
+				font-size: 25;
+				padding-left: 10px;
+				position: relative;
+				bottom: -85%;
+			}
+			.left2in{
+				position: relative;
+				bottom: -145px;
+				float: right;
+			}
+
+			
+		</style>
+		
+	</head>
+	<body>
+		<div id="sidebar">
+			<div id="buttons">
+				<button id ="addplayer" onClick="AddPlayer();">Add Player!</button><br>
+				<button id ="genbtn" onClick="GenerateGroups();" disabled>Generate Groups!</a></button><br>
+				<button id ="matchbtn" onClick="GenerateMatches();">Generate Matches!</button>
+			</div>
+		</div>
+		
+		<div id="content">
+			<div id="players">
+				
+			</div>
+
+			<div id="tablediv">
+						
+			</div>
+			<div id="matchdiv">
+				
+			</div>
+		</div>
+		<!--
+		<div id="brackets">
+			<div id="left">
+				<span class="left1">ghtjbinlbj</span><span class="left1in"><input class="left1in" type="text" size="1"></input></span>
+				<span class="left2">ghtjbinlbj</span><span class="left1in"><input class="left2in" type="text" size="1"></input></span>
+			</div>!-->
+
+		</div>
+
+		<script>
+
+			var classes = ['Mage','Warrior','Priest','Warlock','Paladin','Druid','Shaman','Rogue','Hunter'];
+			var classcheck = ['mage','warrior','priest','warlock','paladin','druid','shaman','rogue','hunter'];
+			
+			var players = [];
+			var groups = [];
+			var groupRank = [];
+			var rounds = 1;
+			var dummyFlag = 0;
+
+			var groupA = [];
+			var groupB = [];
+			var groupC = [];
+			var groupD = [];
+
+			// Unique elements in array
+			function onlyUnique(value, index, self) { 
+    			return self.indexOf(value) === index;
+			}
+
+			function AddPlayer(){
+				var flag = 0;
+				
+				// Name check
+				while (1){
+					var pName = prompt("Enter player name:");
+
+					// check null/empty string
+					if (pName == null){
+						//alert("Player has not been added!");
+						return;
+					}
+
+					if (pName == ""){
+						alert("Name input incorrect! Please try again!");
+						continue;
+					}
+
+					// check if name exists
+					for (var j in players){
+						if (pName == players[j].name){
+							flag = 1;
+							break;
+						}
+					}
+
+					if (flag){
+						flag = 0;
+						alert("Name already exists!");
+						continue;
+					} else
+						break;
+				}
+
+				// ID check
+				while (1){
+					var pID = prompt("Enter player ID without \"#\":\n(number)");
+
+					// checking null/empty string values for ID
+					if (pID == null){
+						//alert("Player has not been added!");
+						return;
+					}
+
+					if (pID == ""){
+						alert("ID input incorrect! Please try again!");
+						continue;
+					}
+
+					//checking if ID is valid
+					if (!(pID == parseInt(pID, 10))){
+						alert("ID input incorrect! Please try again!");
+						continue;
+					} else {
+						pID = '#' + pID;
+						// check if id already exists
+						for (var j in players){
+							if (pID == players[j].ID){
+								flag = 1;
+								break;
+							}
+						}
+
+						if (flag){
+							flag = 0;
+							alert("ID already exists!");
+							continue;
+						} else
+							break;
+					}					
+				}
+
+				// class check
+				while (1){
+					var classInput = prompt("Enter 3 classes separated with commas:\n Available classes: Warrior, Mage, Rogue, Druid, Paladin, Warlock, Priest, Shaman, Hunter");
+
+					// checking null/empty string values for classes
+					if (classInput == null){
+						//alert("Player has not been added!");
+						return;	
+					} 
+					if (classInput == ""){
+						alert("Class input incorrect! Please try again!");
+						continue;
+					}
+
+					// lowercase, remove spaces and separate classes by commas
+					classInput = classInput.toLowerCase().replace(/\s+/g,'').split(',');
+
+					// remove double inputs if they exist
+					classInput = classInput.filter(onlyUnique);
+
+					// check if classes are valid
+					for (var j in classInput){
+						if (classcheck.indexOf(classInput[j]) != -1){
+							classInput[j] = classcheck.indexOf(classInput[j]);
+						} else {
+							flag = 1;
+							break;
+						}
+					}
+					// 3 classes
+					if (j != 2) flag = 1;
+
+					// add player to array
+					if (!flag){
+						for (var j in classInput){
+							classInput[j] = classes[classInput[j]];
+						}
+
+						players.push({
+							name: pName,
+							ID: pID,
+							classes: classInput,
+							wins: 0,
+							losses: 0,
+							overall: 0,
+							beaten: [],
+							number: 0
+						})
+
+						// add player to html
+						var div = document.createElement("div");
+						div.className = "player";
+
+						var positiondiv = document.createElement("div");
+						positiondiv.className = "positiondiv";
+
+						div.appendChild(positiondiv);
+
+						// add name
+						var p = document.createElement("p");
+						p.className = "cp";
+						t = document.createTextNode(pName);
+						p.appendChild(t);
+						positiondiv.appendChild(p);
+
+						// add ID
+						var p = document.createElement("p");
+						p.className = "cp";
+						t = document.createTextNode(pID);
+						p.appendChild(t);
+						positiondiv.appendChild(p);
+
+						var content = document.getElementById("players");
+						content.appendChild(div);
+
+						// add class images
+						for (var j in classInput){
+							var img = document.createElement("img");
+							img.className = "classimg";
+							img.src = classInput[j]+".png";
+							positiondiv.appendChild(img);
+						}
+
+						// add remove img
+						var img = document.createElement("img");
+						img.className = "removeimg";
+						img.src = "del1.png";
+						img.title = "Remove player";
+						img.addEventListener("click", RemovePlayer);
+						positiondiv.appendChild(img);
+
+						alert("Player has been added!");
+						FixSidebar();
+						//edit button
+						if (players.length >= 8) document.getElementById("genbtn").style.visibility = "visible";
+						document.getElementById("genbtn").disabled = false;
+						window.location = "#players";
+						return;
+					}
+
+					flag = 0;
+					alert("Class input incorrect! Please try again!");
+				}
+			}		
+
+			function RemovePlayer(event){
+
+				//get parent and name
+				var parent = event.target.parentNode;
+
+				var name = parent.getElementsByClassName("cp");
+				name = name[0].firstChild.nodeValue;
+
+				// delete player
+				for (var j in players){
+					if (name == players[j].name){
+
+						if (confirm("Do you want to remove player: " + players[j].name + " " + players[j].ID)){
+
+							// remove from array
+							players.splice(j,1);
+							// remove from html
+							parent = parent.parentNode;
+							parent.parentNode.removeChild(parent);
+							document.getElementById("genbtn").disabled = false;
+							if (players.length < 8){
+								document.getElementById("genbtn").style.visibility = "hidden";
+								document.getElementById("matchbtn").style.visibility = "hidden";
+							}
+							return;
+						}							
+					}
+				}
+
+			}
+
+			function GenerateGroups(){
+
+				var numOfPlayers = players.length;
+
+				var i = 0;
+				var n = 0, flag = 0;
+				groups = [];
+				groupRank = [];
+
+				//clear match group variables
+				dummyFlag = 0;
+				rounds = 1;
+
+				// clear groups
+				groupA = [];
+				groupB = [];
+				groupC = [];
+				groupD = [];
+
+				
+				//clear numbers
+				for (var j in players){
+					players[j].number = 0;
+				}
+
+				//Give every player a number
+				while (i < players.length){
+			
+					n = Math.floor((Math.random() * players.length) + 1);
+					for (var j in players){
+						if (players[j].number == n){
+							flag = 1;
+							break;
+						} 
+					}
+					
+					if (flag == 1){
+						flag = 0;
+						continue;
+					} else{ 
+						players[i].number = n;
+						i++;
+					}
+				}
+				
+				//remove previous tables
+				var tbdivNode = document.getElementById("tablediv");
+				while (tbdivNode.firstChild){
+					tbdivNode.removeChild(tbdivNode.firstChild);
+				}
+
+				tbdivNode = document.getElementById("matchdiv");
+				while (tbdivNode.firstChild){
+					tbdivNode.removeChild(tbdivNode.firstChild);
+				}
+
+				// 8 to 11 players
+				if (numOfPlayers >= 8 && numOfPlayers <= 11){
+					for (var i=0; i<numOfPlayers; i++){
+						for (var j in players){
+
+							if (i+1 == players[j].number){
+
+								if ((i+1) <= (numOfPlayers/2)+(numOfPlayers%2)){
+									groupA.push(players[j]);
+								} else{
+									groupB.push(players[j]);
+								}
+								break;
+							}
+						}
+					}
+					groups.push(groupA);
+					groups.push(groupB);
+				}
+
+				// 12+ players
+				if (numOfPlayers >= 12){
+					var k = 1;
+					for (var i=0; i<numOfPlayers; i++){
+						for (var j in players){
+							if (i+1 == players[j].number){
+								switch (k){
+									case 1:
+										groupA.push(players[j]);
+										k++;
+										break;
+									case 2:
+										groupB.push(players[j]);
+										k++;
+										break;
+									case 3:
+										groupC.push(players[j]);
+										k++;
+										break;
+									case 4:
+										groupD.push(players[j]);
+										k = 1;
+										break;
+								}
+								break;
+							}
+						}
+					}
+					groups.push(groupA);
+					groups.push(groupB);
+					groups.push(groupC);
+					groups.push(groupD);
+				}
+
+				// update ranking
+				groupRank = jQuery.extend(true, [], groups);
+				
+				// creating tables
+				var p = document.createElement("p");
+				var t = document.createTextNode("Groups");
+				p.appendChild(t);
+				var div = document.getElementById("tablediv");
+				div.appendChild(p);
+				for (var i in groups){
+					var table = document.createElement("table");
+					table.setAttribute("border", "1")
+					var th = document.createElement("th");
+					t = document.createTextNode("Group " + String.fromCharCode(65 + parseInt(i)));
+					th.setAttribute("colspan", "2");
+					th.appendChild(t);
+					table.appendChild(th);
+					for (j in groups[i]){
+						var tr = document.createElement("tr");
+						var td = document.createElement("td");
+						var t = document.createTextNode(groups[i][j].name);
+						td.appendChild(t);
+						tr.appendChild(td);
+						td = document.createElement("td");
+						td.align = "center";
+						t = document.createTextNode(groups[i][j].wins);
+						td.appendChild(t);
+						tr.appendChild(td);
+						table.appendChild(tr);
+					}
+					div = document.createElement("div");
+					div.className = "groups";
+					div.appendChild(table);
+					if (parseInt(i) % 2 == 0){
+						var grouppair = document.createElement("div");
+						grouppair.className = "grouppair";
+						grouppair.appendChild(div);
+						var tbdiv = document.getElementById("tablediv");
+						tbdiv.appendChild(grouppair);
+					} else {
+						var grouppair = document.getElementsByClassName("grouppair");
+						grouppair = grouppair[grouppair.length - 1];
+						grouppair.appendChild(div);
+					}
+					
+				}
+
+				document.getElementById("genbtn").disabled = true;
+				document.getElementById("matchbtn").disabled = false;
+				document.getElementById("matchbtn").style.visibility = "visible";
+				FixSidebar(1);
+				window.location = "#tablediv";
+			}
+
+			function GenerateMatches(){
+
+				var dummy = 0;
+
+				// add dummy where needed
+				if (!dummyFlag){
+					for (var j in groups){
+						if (groups[j].length % 2 !== 0){
+							groups[j].push("dummy");
+							dummyFlag = 1;
+						}
+					}
+				}
+
+				//print round
+				var p = document.createElement("p");
+				p.setAttribute("id", rounds);
+				var t = document.createTextNode("Round " + rounds);
+				p.appendChild(t);
+				var matchdiv = document.getElementById("matchdiv");
+				matchdiv.appendChild(p);
+
+				// going through groups
+				for (var j in groups){
+					// check if group has any rounds left
+					if (rounds >= groups[j].length) break;
+
+					//create match table
+					var table = document.createElement("table");
+					table.setAttribute("border", 1);
+					var th = document.createElement("th");
+					th.setAttribute("colspan", 4)
+					t = document.createTextNode("Group " + String.fromCharCode(65 + parseInt(j)));
+					th.appendChild(t);
+					table.appendChild(th);
+
+					// go through matches
+					for (var i=0; i<groups[j].length / 2; i++){
+						// look for dummy
+						if (groups[j][i] == "dummy"){
+							dummy = groups[j][groups[j].length - 1 - i].name;
+							continue;
+						} else if (groups[j][groups[j].length - 1 - i] == "dummy"){
+							dummy = groups[j][i].name;
+							continue;
+						}
+
+						//create matches
+						var tr = document.createElement("tr");
+						var td = document.createElement("td");
+						var br = document.createElement("br");
+						t = document.createTextNode(groups[j][i].name);
+						td.appendChild(t);
+						td.appendChild(br);
+						t = document.createTextNode(groups[j][i].ID);
+						td.appendChild(t);
+						tr.appendChild(td);
+
+						td = document.createElement("td");
+						td.setAttribute("align", "center");
+						var input = document.createElement("input");
+						input.setAttribute("id", groups[j][i].name);
+						input.setAttribute("type", "text");
+						input.setAttribute("maxlength", 1);
+						input.setAttribute("value", 0);
+						input.onkeypress = CheckImput;
+						input.onchange = ValueChange;
+						td.appendChild(input);
+						tr.appendChild(td);
+
+						td = document.createElement("td");
+						td.setAttribute("align", "center");
+						input = document.createElement("input");
+						input.setAttribute("id", groups[j][groups[j].length - 1 - i].name);
+						input.setAttribute("type", "text");
+						input.setAttribute("maxlength", 1);
+						input.setAttribute("value", 0);
+						input.onkeypress = CheckImput;
+						input.onchange = ValueChange;
+						td.appendChild(input);
+						tr.appendChild(td);
+
+						td = document.createElement("td");
+						td.setAttribute("align", "right");
+						t = document.createTextNode(groups[j][groups[j].length - 1 - i].name);
+						td.appendChild(t);
+						br = document.createElement("br");
+						td.appendChild(br);
+						t = document.createTextNode(groups[j][groups[j].length - 1 - i].ID);
+						td.appendChild(t);
+						tr.appendChild(td);
+
+						table.appendChild(tr);
+					}
+
+					// add free round row if necesary
+					if (dummy !== 0){
+						tr = document.createElement("tr");
+						td = document.createElement("td");
+						td.setAttribute("colspan", 2);
+						td.setAttribute("align", "center");
+						t = document.createTextNode(dummy);
+						td.appendChild(t);
+						tr.appendChild(td);
+
+						td = document.createElement("td");
+						td.setAttribute("align", "center");
+						td.setAttribute("colspan", 2);
+						t = document.createTextNode("BYE");
+						td.appendChild(t);
+						tr.appendChild(td);
+
+						table.appendChild(tr);
+						dummy = 0;
+					}
+
+					//add match table to html
+					var div = document.createElement("div");
+					div.className = "groups";
+					div.appendChild(table);
+
+					if (parseInt(j) % 2 == 0){
+						var matchpair = document.createElement("div");
+						matchpair.className = "matchpair";
+						matchpair.appendChild(div);
+						matchdiv.appendChild(matchpair);
+					} else {
+						var matchpair = document.getElementsByClassName("matchpair");
+						matchpair = matchpair[matchpair.length - 1];
+						matchpair.appendChild(div);
+					}
+				}
+
+				//generate next combination of matchups
+				var tmp = 0;
+				var tmp1 = 0;
+
+				for (j in groups){
+					if (parseInt(j) >= groups[j].length) break;
+					tmp = groups[j].pop();
+					tmp1 = groups[j].shift();
+					groups[j].push(tmp1);
+					groups[j].push(tmp);
+				}
+
+				rounds++;
+				if (rounds == groups[0].length) document.getElementById("matchbtn").disabled = true;
+				window.location = "#" + (rounds - 1);
+				FixSidebar();
+			}
+
+			function CheckImput (event){
+				var charCode = event.keyCode;
+				var charLimit = 50;
+				var parent = event.target.parentNode;
+
+				if (parent.nextElementSibling.firstChild.value == 2) 
+					charLimit = 49;
+				else if (parent.previousElementSibling.firstChild.value == 2) 
+					charLimit = 49;
+		
+    			if (charCode >= 48 && charCode <= charLimit ) 
+    				return true;
+       			else return false;
+			}
+
+			function ValueChange (event){
+				var after = parseInt(event.target.value);
+				var before = parseInt(event.target.defaultValue);
+				event.target.defaultValue = after;
+				var editPlayer = event.target.id;
+				var oponent = [];
+				var parent = event.target.parentNode;
+
+				// find oponent
+				if (parent.nextElementSibling.firstChild.value == undefined){
+					parent = parent.parentNode;
+					oponent = parent.firstElementChild.firstChild.nodeValue;
+				} else {
+					parent = parent.parentNode;
+					oponent = parent.lastElementChild.firstChild.nodeValue;
+				}
+
+				//update wins and losses
+				if (after > before){
+					for (var i in groups){
+						for (var j in groups[i]){
+
+							// check for dummy
+							if (groups[i][j].name == undefined) continue;
+
+							if (editPlayer == groupRank[i][j].name){
+								groupRank[i][j].wins += after - before;
+								if (after == 2){
+									groupRank[i][j].overall++;
+									groupRank[i][j].beaten.push(oponent);
+								} 
+							}
+							
+							if (oponent == groupRank[i][j].name)
+								groupRank[i][j].losses += after - before;
+
+						}
+					}
+				}
+
+				if (after < before){
+					for (var i in groups){
+						for (var j in groups[i]){
+
+							// check for dummy
+							if (groups[i][j].name == undefined) continue;
+
+							if (editPlayer == groupRank[i][j].name){
+								groupRank[i][j].wins -= before - after;
+								if (before == 2){
+									groupRank[i][j].overall--;
+
+									for (var k in groupRank[i][j].beaten){
+										if (groupRank[i][j].beaten[k] == oponent){
+											groupRank[i][j].beaten.splice(k, 1);
+											break;
+										}
+									}
+								} 
+							}
+							
+							if (oponent == groupRank[i][j].name)
+								groupRank[i][j].losses -= before - after;
+
+						}
+					}
+				}
+				
+				//sort ranking
+				for (var i in groupRank){
+					BubbleSort(groupRank[i]);
+				}
+
+				//update tables
+				UpdateTables();
+			}
+
+			function BubbleSort (arr){
+				var j = 0, tmp = 0, swap = true;
+
+				while (swap){
+					swap = false;
+					j++;
+					for (var i=0; i<arr.length - j; i++){
+
+						//check matches won
+						if (arr[i].overall < arr[i+1].overall){
+
+							tmp = arr[i];
+							arr[i] = arr[i+1];
+							arr[i+1] = tmp;
+							swap = true;
+						//matches tied
+						} else if (arr[i].overall == arr[i+1].overall){
+
+							//check won games
+							if (arr[i].wins - arr[i].losses < arr[i+1].wins - arr[i+1].losses){
+
+							tmp = arr[i];
+							arr[i] = arr[i+1];
+							arr[i+1] = tmp;
+							swap = true;
+
+							}	
+							//check beaten player list
+							for (var k in arr[i+1].beaten){
+								if (arr[i+1].beaten[k] == arr[i].name){
+									tmp = arr[i];
+									arr[i] = arr[i+1];
+									arr[i+1] = tmp;
+									swap = true;
+									break;
+								}
+							}
+						}
+					}
+				}
+
+			}
+
+			function UpdateTables(){
+
+				//remove previous tables;
+				var tbdivNode = document.getElementById("tablediv");
+				while (tbdivNode.firstChild){
+					tbdivNode.removeChild(tbdivNode.firstChild);
+				}
+
+				//add updated tables
+				for (var i in groupRank){
+					var table = document.createElement("table");
+					table.setAttribute("border", "1")
+					var th = document.createElement("th");
+					var t = document.createTextNode("Group " + String.fromCharCode(65 + parseInt(i)));
+					th.setAttribute("colspan", "2");
+					th.appendChild(t);
+					table.appendChild(th);
+					for (j in groupRank[i]){
+						var tr = document.createElement("tr");
+						var td = document.createElement("td");
+						var t = document.createTextNode(groupRank[i][j].name);
+						td.appendChild(t);
+						tr.appendChild(td);
+						td = document.createElement("td");
+						td.align = "center";
+						t = document.createTextNode(groupRank[i][j].overall);
+						td.appendChild(t);
+						tr.appendChild(td);
+						table.appendChild(tr);
+					}
+					var div = document.createElement("div");
+					div.className = "groups";
+					div.appendChild(table);
+					if (parseInt(i) % 2 == 0){
+						var grouppair = document.createElement("div");
+						grouppair.className = "grouppair";
+						grouppair.appendChild(div);
+						var tbdiv = document.getElementById("tablediv");
+						tbdiv.appendChild(grouppair);
+					} else {
+						var grouppair = document.getElementsByClassName("grouppair");
+						grouppair = grouppair[grouppair.length - 1];
+						grouppair.appendChild(div);
+					}
+					
+				}
+
+			}
+	
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			function FixSidebar(smg){		
+				var sidebar = $('#sidebar');
+				var content = $('#content');
+
+				if (smg){
+					sidebar.css('height', content.height());
+					return;
+				}
+
+				if (content.height() > sidebar.height() )
+	    			sidebar.css('height', content.height());
+				else
+	    			sidebar.css('height', sidebar.height());
+	    	}
+	    	FixSidebar();
+
+	    	window.onscroll = function(){
+				var div = document.getElementById("buttons");
+				div.style.marginTop = document.body.scrollTop;
+			}
+		</script>
+
+	</body>
+</html>
